@@ -124,16 +124,26 @@ playerRouter.delete('/me/:sessionId/remove', JWTAuthPlayerMiddleWear, async (req
 
 
 
-playerRouter.put('/join/:sessionId', JWTAuthPlayerMiddleWear, async (req, res, next) => {
+playerRouter.put('/join/:sessionId/:playerId', JWTAuthPlayerMiddleWear, async (req, res, next) => {
     try {
         const { sessionId } = req.params
+        const { playerId } = req.params
+
         let session = await SessionModel.findById(sessionId)
-        const isPlaying = session.players.some(player => player.toString() === req.player._id.toString())
+        const isPlaying = session.players.some(player => player.toString() === playerId.toString())
+
         if (isPlaying) {
-            await SessionModel.findByIdAndUpdate(sessionId, { $pull: { players: req.player._id } })
-            session.teams.push(session.teams.map(team => team.players.filter(player => player.toString() !== req.player._id.toString())))
+            await SessionModel.findByIdAndUpdate(sessionId, { $pull: { players: playerId } })
+            if (session.teams.length > 0 &&
+                session.teams.some(team => team.players.some(player => player._id === playerId))) {
+                let selectedUserTeam = session.teams.find(team => team.players.find(player => player._id === playerId))
+                const filteredTeamMember = selectedUserTeam.players.filter(player => player._id !== playerId)
+                selectedUserTeam.players = filteredTeamMember
+                session.teams.splice(session.teams.indexOf(parseInt(selectedUserTeam.team_id) - 1), 1, selectedUserTeam)
+                session.save()
+            }
         } else {
-            await SessionModel.findByIdAndUpdate(sessionId, { $push: { players: req.player._id } })
+            await SessionModel.findByIdAndUpdate(sessionId, { $push: { players: playerId } })
         }
         res.status(200).send(session)
     } catch (error) {
