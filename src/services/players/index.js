@@ -191,14 +191,16 @@ playerRouter.put('/overtime/:sessionId', JWTAuthPlayerMiddleWear, async (req, re
 
     try {
         const { sessionId } = req.params
-        const session = await SessionModel.findById(sessionId)
+        let session = await SessionModel.findById(sessionId)
         if (session.playing) {
+            const addedScore = session.teams.map(team => ({ ...team, score: req.body[`team_${team.team_id}_score`] }))
+            session.teams = addedScore
             await SessionModel.findByIdAndUpdate(sessionId, { $set: { playing: false } })
             const newHistory = await HistoryModel.create({ session: sessionId })
             newHistory.save()
-            res.status(200).send({ message: "success" })
+            session.save()
         }
-        res.status(200).send(session)
+        res.status(200).send({ message: "success" })
     } catch (error) {
         console.log("problem", error);
         next(error)
