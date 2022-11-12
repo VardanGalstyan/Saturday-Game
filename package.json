@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node ./server.js",
-    "dev": "nodemon -r dotenv/config ./server.js"
+    "dev": "nodemon -r dotenv/config server.js --ignore client",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
