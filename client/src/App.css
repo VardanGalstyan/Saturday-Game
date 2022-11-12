@@ -1,0 +1,27 @@
+:root {
+  --form-font: "Bebas Neue";
+  --text-font: "Montserrat", sans-serif;
+  --blue: #25489c !important;
+  --orange: #9c4923 !important;
+}
+
+body,
+html {
+  font-family: var(--form-font) !important;
+}
+
+.football-app {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  text-align: center;
+  background-color: #9c4923;
+  border: green 2px solid;
+  position: relative;
+  font-family: var(--form-font) !important;
+}

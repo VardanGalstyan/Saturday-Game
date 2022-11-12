@@ -1,0 +1,156 @@
+.status-update-modal {
+  font-family: var(--form-font);
+}
+
+.status-update-modal .modal-content {
+  background-color: var(--blue);
+}
+
+.status-update-modal .modal-footer {
+  background-color: var(--blue);
+}
+
+.player-status-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.status-update-item {
+  color: var(--blue);
+  background-color: var(--white);
+  padding: 2px 5px;
+  margin: 3px;
+  border-radius: 3px;
+}
+
+.teams-divided {
+  display: flex;
+  border-top: 1px solid rgba(255, 255, 255, 0.767);
+  margin-top: 10px;
+  padding: 5px;
+  background-color: var(--blue);
+  color: var(--white);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.team-container {
+  padding: 10px 0;
+  margin: 3px 1px;
+}
+
+.team-list {
+  min-height: 10px;
+  height: 100% !important;
+}
+
+.random-select-button {
+  background-color: white;
+  color: var(--blue);
+  padding: 3px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.random-select-button:hover {
+  background-color: var(--blue);
+  color: white;
+}
+
+.team-player-item span {
+  padding: 0 3px;
+}
+
+.status-update-item-icon {
+  cursor: pointer;
+}
+
+.player-status-control-line {
+  border-top: 1px solid rgba(255, 255, 255, 0.767);
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.status-update-modal .modal-footer {
+  background-color: var(--blue);
+  color: white;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.status-update-modal .modal-footer .form-button {
+  color: white;
+}
+
+.status-update-loader {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.teams-confirmed {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.single-team-confirmed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.single-team-players {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.single-team-players svg {
+  margin-right: 3px;
+}
+
+.team-blue svg {
+  color: blue;
+}
+
+.team-purple svg {
+  color: turquoise;
+}
+
+.active-game-delete-modal-score-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.active-game-delete-modal-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.active-game-delete-modal-score input {
+  width: 100%;
+}

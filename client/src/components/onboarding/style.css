@@ -1,0 +1,56 @@
+.sign-in-form {
+  background-color: #25489c;
+  border: white 2px solid;
+  padding: 25px;
+  color: white;
+  font-family: var(--text-font);
+  width: 40% !important;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.sign-in-form .form-group-item {
+  margin-bottom: 10px;
+}
+
+.form-button-area {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.form-button {
+  background-color: transparent !important;
+  border: none !important;
+  font-size: 20px !important;
+  cursor: pointer;
+  font-family: var(--form-font) !important;
+}
+
+.form-button:hover {
+  color: rgba(255, 255, 255, 0.788) !important;
+}
+
+.form-button:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .sign-in-form {
+    width: 80% !important;
+  }
+}
+
+.boarding-error {
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.boarding-error svg {
+  margin-right: 5px;
+  font-size: 24px;
+}
