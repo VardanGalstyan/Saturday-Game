@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import ActiveGameDeleteModal from "./StatusUpdate/Modals/ActiveGameDeleteModal";
 import PlayersModal from "./Players/PlayersModal";
