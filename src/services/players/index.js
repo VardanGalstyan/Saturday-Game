@@ -55,7 +55,7 @@ playerRouter.post("/login", async (req, res, next) => {
   }
 });
 
-playerRouter.get("/", async (req, res, next) => {
+playerRouter.get("/", JWTAuthPlayerMiddleWear, async (req, res, next) => {
   try {
     const players = await PlayerModel.find();
     res.send(players);
@@ -101,6 +101,7 @@ playerRouter.post(
         ...req.body,
         session_name: `Game #${historyLength + 1}`,
         host: req.player._id,
+        active_game: true,
       });
       const savedSession = await newSession.save();
       const locations = await LocationModel.find({
@@ -270,7 +271,7 @@ playerRouter.put(
         }));
         session.teams = addedScore;
         await SessionModel.findByIdAndUpdate(sessionId, {
-          $set: { playing: false },
+          $set: { playing: false, active_game: false },
         });
         const newHistory = await HistoryModel.create({ session: sessionId });
         newHistory.save();
