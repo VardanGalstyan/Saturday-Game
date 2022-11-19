@@ -3,7 +3,6 @@ import { JTWAuthenticate } from "../../auth/tools.js";
 import PlayerModel from "./schema.js";
 import { SessionModel } from "../sessions/schema.js";
 import { LocationModel } from "../sessions/schema.js";
-import HistoryModel from "../history/schema.js";
 import createHttpError from "http-errors";
 import { JWTAuthPlayerMiddleWear } from "../../auth/token.js";
 import uuid from "react-uuid";
@@ -30,7 +29,7 @@ playerRouter.post("/temp-player", async (req, res, next) => {
     const newPlayer = await PlayerModel.create({
       ...req.body,
       isTemp: true,
-      email: `temp-player-${uuid()}@saturday-game.am`,
+      email: `temp-player-${uuid()}@saturday-game.com`,
     });
     const savedPlayer = await newPlayer.save();
     res.status(201).send({ savedPlayer });
@@ -96,10 +95,10 @@ playerRouter.post(
   JWTAuthPlayerMiddleWear,
   async (req, res, next) => {
     try {
-      const historyLength = (await HistoryModel.find()).length;
+      const sessions = await SessionModel.find();
       const newSession = await SessionModel.create({
         ...req.body,
-        session_name: `Game #${historyLength + 1}`,
+        session_name: `Game #${sessions.length + 1}`,
         host: req.player._id,
         active_game: true,
       });
