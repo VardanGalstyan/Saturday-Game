@@ -6,7 +6,6 @@ import listEndpoints from "express-list-endpoints";
 import mongoose from "mongoose";
 import playerRouter from "./src/services/players/index.js";
 import sessionRouter from "./src/services/sessions/index.js";
-import historyRouter from "./src/services/history/index.js";
 
 const server = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -20,7 +19,6 @@ server.use(express.static(path.join(__dirname, "./client/build")));
 
 server.use("/api/players", playerRouter);
 server.use("/api/sessions", sessionRouter);
-server.use("/api/history", historyRouter);
 
 server.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build", "index.html"));
