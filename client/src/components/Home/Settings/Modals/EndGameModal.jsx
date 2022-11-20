@@ -32,9 +32,9 @@ function DropGameModal(props) {
         }
       );
       if (response.ok) {
-        dispatch(fillSessionData());
         props.onHide();
         handleClose();
+        dispatch(fillSessionData());
       } else {
         throw new Error("Something went wrong");
       }
