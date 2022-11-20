@@ -133,11 +133,9 @@ function SettingsModal(props) {
         }
       );
       if (response.ok) {
+        setIsLoading(false);
+        setTeams([]);
         dispatch(fillSessionData());
-        setTimeout(() => {
-          setIsLoading(false);
-          setTeams([]);
-        }, 400);
       } else {
         setIsLoading(false);
         throw new Error("Something went wrong");

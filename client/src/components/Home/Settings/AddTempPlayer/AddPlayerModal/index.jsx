@@ -36,10 +36,10 @@ function AddPlayerModal({ game, token, ...props }) {
           }
         );
         if (response.ok) {
-          dispatch(fillSessionData());
           setPlayerName("");
           setIsLoading(false);
           props.onHide();
+          dispatch(fillSessionData());
         }
       } else {
         setIsLoading(false);

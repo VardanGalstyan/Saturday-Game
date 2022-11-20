@@ -24,8 +24,8 @@ function Join({ game, token, join }) {
         }
       );
       if (response.ok) {
-        dispatch(fillSessionData());
         setIsLoading(false);
+        dispatch(fillSessionData());
       } else {
         throw Error;
       }
