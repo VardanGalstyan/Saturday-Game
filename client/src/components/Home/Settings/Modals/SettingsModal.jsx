@@ -193,7 +193,7 @@ function SettingsModal(props) {
             <div className="player-status-container">
               {game.players.map((player) => (
                 <TopMemberList
-                  game={game._id}
+                  game={`player-${game._id}`}
                   player={player}
                   key={player._id}
                   token={token}
@@ -205,7 +205,7 @@ function SettingsModal(props) {
                 {(teamsAreConfirmed ? confirmedTeams : teams).map(
                   (team, index) => (
                     <TeamItem
-                      key={team.team_id}
+                      key={`teams-${index}`}
                       team={team.players}
                       index={index}
                       id={team.team_id}
