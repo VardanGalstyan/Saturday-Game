@@ -1,6 +1,6 @@
 @import "./CreateGame/style.css";
 @import "./Players/style.css";
-@import "./StatusUpdate/style.css";
+@import "./Settings/style.css";
 
 .home {
   width: 90%;

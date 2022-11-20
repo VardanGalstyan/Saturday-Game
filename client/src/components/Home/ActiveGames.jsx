@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import ActiveGameDeleteModal from "./StatusUpdate/Modals/ActiveGameDeleteModal";
+import ActiveGameDeleteModal from "./Settings/Modals/ActiveGameDeleteModal";
 import PlayersModal from "./Players/PlayersModal";
-import StatusUpdateModal from "./StatusUpdate/Modals/StatusUpdateModal";
+import SettingsModal from "./Settings/Modals/SettingsModal";
 import MyTimer from "./MyTimer";
 
-import Join from "./StatusUpdate/Join";
-import TeamsModal from "./StatusUpdate/Modals/TeamsModal";
+import Join from "./Settings/Join";
+import TeamsModal from "./Settings/Modals/TeamsModal";
 import CreateGameModal from "./CreateGame/CreateGameModal";
-import AddTempPlayer from "./StatusUpdate/AddTempPlayer";
+import AddTempPlayer from "./Settings/AddTempPlayer";
 
 function ActiveGames(props) {
   const { game } = props;
@@ -41,6 +41,7 @@ function ActiveGames(props) {
     "Friday",
     "Saturday",
   ];
+
   let day = new Date(game.session_date);
   let dayName = days[day.getDay()];
 
@@ -109,7 +110,7 @@ function ActiveGames(props) {
         onHide={() => setShowPlayersModal(false)}
         players={game && game.players}
       />
-      <StatusUpdateModal
+      <SettingsModal
         show={showStatusModal}
         onHide={() => setShowStatusModal(false)}
         game={game}
