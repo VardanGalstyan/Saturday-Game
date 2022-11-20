@@ -11,7 +11,7 @@ import EndGameModal from "./EndGameModal.jsx";
 import { FunctionContext } from "../CreateContext.js";
 import { ClockLoader } from "react-spinners";
 
-function StatusUpdateModal(props) {
+function SettingsModal(props) {
   const dispatch = useDispatch();
 
   // S T A T E S
@@ -193,9 +193,9 @@ function StatusUpdateModal(props) {
             <div className="player-status-container">
               {game.players.map((player) => (
                 <TopMemberList
-                  game={game._id}
+                  gameID={game._id}
                   player={player}
-                  key={player._id}
+                  key={`player-${player._id}`}
                   token={token}
                 />
               ))}
@@ -205,7 +205,7 @@ function StatusUpdateModal(props) {
                 {(teamsAreConfirmed ? confirmedTeams : teams).map(
                   (team, index) => (
                     <TeamItem
-                      key={team.team_id}
+                      key={`teams-${index}`}
                       team={team.players}
                       index={index}
                       id={team.team_id}
@@ -302,4 +302,4 @@ function StatusUpdateModal(props) {
   );
 }
 
-export default StatusUpdateModal;
+export default SettingsModal;

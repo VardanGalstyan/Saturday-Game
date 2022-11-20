@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import ActiveGameDeleteModal from "./StatusUpdate/Modals/ActiveGameDeleteModal";
+import ActiveGameDeleteModal from "./Settings/Modals/ActiveGameDeleteModal";
 import PlayersModal from "./Players/PlayersModal";
-import StatusUpdateModal from "./StatusUpdate/Modals/StatusUpdateModal";
+import SettingsModal from "./Settings/Modals/SettingsModal";
 import MyTimer from "./MyTimer";
 
-import Join from "./StatusUpdate/Join";
-import TeamsModal from "./StatusUpdate/Modals/TeamsModal";
+import Join from "./Settings/Join";
+import TeamsModal from "./Settings/Modals/TeamsModal";
 import CreateGameModal from "./CreateGame/CreateGameModal";
-import AddTempPlayer from "./StatusUpdate/AddTempPlayer";
+import AddTempPlayer from "./Settings/AddTempPlayer";
+import { utcToDateString, utcToWeekDay } from "../../utilities/dates";
 
 function ActiveGames(props) {
   const { game } = props;
   const token = localStorage.getItem("footballAccessToken");
 
   const join = useSelector((state) => state.user.data);
+
   const isHost = game.host._id === join._id;
 
   // S T A T E S
@@ -25,33 +27,14 @@ function ActiveGames(props) {
   const [showTeamsModal, setShowTeamsModal] = useState(false);
   const [showEditGame, setShowEditGame] = useState(false);
 
-  // D A T E  M E T H O D S
-
-  const date = new Date(game.session_date)
-    .toDateString()
-    .split(" ")
-    .splice(1, 3)
-    .join(" ");
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = new Date(game.session_date);
-  let dayName = days[day.getDay()];
-
   return (
     <Container className="active-game">
       <div className="active-game-header">
         <span>{game.session_name}</span>
-        <span>{date}</span>
+        <span>{utcToDateString(game.session_date)}</span>
       </div>
       <div className="active-game-date">
-        <span>{dayName} |</span>
+        <span>{utcToWeekDay(game.session_date)} |</span>
         <span>{game.session_time}</span>
       </div>
       <div className="active-game-location">
@@ -78,7 +61,6 @@ function ActiveGames(props) {
             <div
               className="active-game-badges-status"
               onClick={() => setShowStatusModal(true)}>
-              {/* <span>Settings</span> */}
               <span>Settings</span>
             </div>
           )}
@@ -109,7 +91,7 @@ function ActiveGames(props) {
         onHide={() => setShowPlayersModal(false)}
         players={game && game.players}
       />
-      <StatusUpdateModal
+      <SettingsModal
         show={showStatusModal}
         onHide={() => setShowStatusModal(false)}
         game={game}

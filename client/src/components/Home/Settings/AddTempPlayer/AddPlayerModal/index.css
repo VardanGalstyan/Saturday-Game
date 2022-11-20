@@ -1,0 +1,21 @@
+.add-player-modal-dropdown {
+  position: absolute;
+  top: 63px;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.add-player-modal-dropdown-item {
+  background-color: rgba(0, 0, 0, 0.644);
+  color: white;
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.275);
+}
+
+.add-player-modal-dropdown-item:hover {
+  background-color: rgba(45, 44, 44, 0.644);
+}

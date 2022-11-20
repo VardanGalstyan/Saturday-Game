@@ -10,6 +10,7 @@
   background-color: rgba(0, 0, 0, 0.644);
   color: white;
   padding: 10px;
+  position: relative;
 }
 
 .players-joined .players-joined-item {

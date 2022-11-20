@@ -1,5 +1,4 @@
 import "./style.css";
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ActiveGames from "./ActiveGames";
 import NewGame from "./CreateGame/NewGame";
