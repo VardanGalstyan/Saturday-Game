@@ -193,9 +193,9 @@ function SettingsModal(props) {
             <div className="player-status-container">
               {game.players.map((player) => (
                 <TopMemberList
-                  game={`player-${game._id}`}
+                  gameID={game._id}
                   player={player}
-                  key={player._id}
+                  key={`player-${player._id}`}
                   token={token}
                 />
               ))}

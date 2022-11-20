@@ -1,41 +1,39 @@
-import React from 'react'
-import { TiDelete } from 'react-icons/ti'
-import { useDispatch } from 'react-redux'
-import { fillSessionData } from '../../../Redux/Actions/actions'
+import React from "react";
+import { TiDelete } from "react-icons/ti";
+import { useDispatch } from "react-redux";
+import { fillSessionData } from "../../../Redux/Actions/actions";
 
-function TopMemberList({ player, game, token }) {
+function TopMemberList({ player, gameID, token }) {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
-
-    const handleRemovePlayer = async () => {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_URL}/players/join/${game}/${player._id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            if (response.ok) {
-                dispatch(fillSessionData())
-            }
-        } catch (error) {
-            console.log(error)
+  const handleRemovePlayer = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_URL}/players/join/${gameID}/${player._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         }
+      );
+      if (response.ok) {
+        dispatch(fillSessionData());
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-
-    return (
-        <div className='status-update-item' key={player._id}>
-            <span className='mr-1'>{player.full_name}</span>
-            <span
-                className='status-update-item-icon'
-                onClick={handleRemovePlayer}
-            >
-                <TiDelete />
-            </span>
-        </div>
-    )
+  return (
+    <div className="status-update-item" key={player._id}>
+      <span className="mr-1">{player.full_name}</span>
+      <span className="status-update-item-icon" onClick={handleRemovePlayer}>
+        <TiDelete />
+      </span>
+    </div>
+  );
 }
 
-export default TopMemberList
+export default TopMemberList;
