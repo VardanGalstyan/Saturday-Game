@@ -120,8 +120,8 @@ function CreateGameModal(props) {
                     setData({ ...data, session_location: e.target.value })
                   }
                 />
-                {data.session_location.length > 2 && !isLocation && (
-                  <span className="location-list">
+                {data.session_location.length > 0 && !isLocation ? (
+                  <div className="location-list">
                     {locations
                       .filter((item) =>
                         item.location_name
@@ -141,8 +141,8 @@ function CreateGameModal(props) {
                           {location.location_name}
                         </span>
                       ))}
-                  </span>
-                )}
+                  </div>
+                ) : null}
               </Form.Group>
               <Form.Group as={Col}>
                 <Form.Control

@@ -31,6 +31,8 @@
 
 .location-list {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   width: 90%;
   background-color: rgba(255, 255, 255, 0.972);
   color: var(--blue);
@@ -44,5 +46,5 @@
 }
 
 .location-list-item:hover {
-  background-color: rgba(255, 255, 255, 0.616);
+  background-color: rgba(162, 160, 160, 0.179);
 }
