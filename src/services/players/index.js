@@ -217,7 +217,7 @@ playerRouter.put(
       const session = await SessionModel.findById(sessionId);
       if (session.teams.length === 0) {
         await SessionModel.findByIdAndUpdate(sessionId, {
-          $push: { teams: req.body },
+          $push: { teams: { $each: req.body } },
         });
       } else {
         await SessionModel.findByIdAndUpdate(sessionId, {
@@ -272,8 +272,6 @@ playerRouter.put(
         await SessionModel.findByIdAndUpdate(sessionId, {
           $set: { playing: false, active_game: false },
         });
-        const newHistory = await HistoryModel.create({ session: sessionId });
-        newHistory.save();
         session.save();
       }
       res.status(200).send({ message: "success" });
